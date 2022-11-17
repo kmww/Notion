@@ -1,3 +1,5 @@
+const API_PREFIX = process.env.API_PREFIX;
+
 export const request = async (url, option = {}) => {
   try {
     const res = await fetch(`${API_PREFIX}${url}`, {
