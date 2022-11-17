@@ -1,4 +1,4 @@
-const API_PREFIX = process.env.API_PREFIX;
+const API_PREFIX = VERCEL;
 
 export const request = async (url, option = {}) => {
   try {
