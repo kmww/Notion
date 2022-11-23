@@ -1,4 +1,6 @@
-const API_PREFIX = VERCEL;
+import { API_KEY, API_HEADER, API_HEADER_NAME } from "../../constants.js";
+const API_PREFIX = API_KEY;
+
 
 export const request = async (url, option = {}) => {
   try {
@@ -6,7 +8,7 @@ export const request = async (url, option = {}) => {
       ...option,
       headers: {
         "content-Type": "application/json",
-        "x-username": "minwoo",
+        "x-username": API_HEADER_NAME,
       },
     });
 

@@ -13,12 +13,14 @@ export default function DocumentList({
 
   const $documentList = document.createElement("div");
   $documentList.className = "document-list";
-  $target.appendChild($documentList);
+
   this.state = initialState;
 
   this.setState = (nextState) => {
-    this.state = nextState;
-    this.render();
+    if (Array.isArray(this.state)) {
+      this.state = nextState;
+      this.render();
+    }
   };
 
   this.render = () => {
@@ -45,22 +47,28 @@ export default function DocumentList({
 
         return;
       }
-      if (target.className === "root-page-add-button") {
+
+      if (target.classList.contains("root-page-add-button")) {
         onClickRootAdd();
         return;
       }
-      if (target.name === "remove-button") {
-        onClickRemove(id);
-        removeItem(listToggleState);
-        return;
-      }
-      if (target.name === "add-button") {
-        getItem(listToggleState) ? "" : setItem(listToggleState, "block");
-        onClickAdd(id);
-        return;
+
+      switch (target.name) {
+        case "remove-button": {
+          onClickRemove(id);
+          removeItem(listToggleState);
+          return;
+        }
+        case "add-button": {
+          getItem(listToggleState) ? "" : setItem(listToggleState, "block");
+          onClickAdd(id);
+          return;
+        }
       }
     }
   });
+
+  $target.appendChild($documentList);
 
   this.render();
 }
