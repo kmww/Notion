@@ -1,6 +1,6 @@
 import { API_KEY, API_HEADER, API_HEADER_NAME } from "../../constants.js";
-
 const API_PREFIX = API_KEY;
+
 
 export const request = async (url, option = {}) => {
   try {
